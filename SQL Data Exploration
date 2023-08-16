@@ -1,14 +1,11 @@
-Select *
-From PortfolioProject.dbo.CovidDeaths
-Where continent is not null
-Order By 3, 4 
+/*
+Covid 19 Data Exploration 
 
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 
---Select *
---From PortfolioProject.dbo.CovidVaccinations
---Order By 3,4
+*/
 
---Select Data that we are going to be using
+--Select Data that I am going to be using
 Select Location, Date, total_cases, new_cases, total_deaths, population
 From PortfolioProject.dbo.CovidDeaths
 Where continent is not null
@@ -28,7 +25,7 @@ From PortfolioProject.dbo.CovidDeaths
 Where Location like '%kingdom%' and continent is not null
 Order By 1, 2
 
--- Looking at countires with the highest infection rate comapred to population
+-- Looking at countires with the highest infection rate compared to population
 Select Location, Population, max(total_cases) as HighestInfectionCount, max((total_cases/population))*100 as PercentPopulationInfected
 From PortfolioProject.dbo.CovidDeaths
 Where continent is not null
@@ -90,7 +87,7 @@ Where dea.continent is not null
 Select *, (RollingVaccinvationCount/Population)*100 as PercentPopulationVaccinated
 from PopvsVac
 
--- Using a Temp Table to calculate total # of people vaccinated percentage
+-- Using a Temp Table to calculate total percentage of people vaccinated 
 Drop Table if exists #PercentPopulationVaccinated
 Create Table #PercentPopulationVaccinated
 (
